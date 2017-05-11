@@ -1,0 +1,27 @@
+{
+    "appId": "jturcino-docker-to-singularity-jd2-0.1.0",
+    "archive": true,
+    "archivePath": "biocontainers_singularity/",
+    "archiveSystem": "jturcino-stampede-storage",
+    "batchQueue": "normal",
+    "executionSystem": "jfonner-jetstream-docker2",
+    "inputs": {
+        "dockerFile": ""
+    },
+    "maxRunTime": "00:30:00",
+    "memoryPerNode": "3GB",
+    "name": "jturcino-d2s-resync-nanosim-h",
+    "nodeCount": 1,
+    "notifications": [
+        {
+            "event": "FAILED",
+            "persistent": false,
+            "url": "https://hooks.slack.com/services/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"
+        }
+    ],
+    "parameters": {
+        "dockerImage": "quay.io/biocontainers/nanosim-h",
+        "imageTag": "1.1.0.2--py36r3.3.1_1"
+    },
+    "processorsPerNode": 2
+}
