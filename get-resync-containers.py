@@ -51,10 +51,13 @@ if __name__ == '__main__':
         # second 'any' checks the current image has the most recent version if the first clause passes
         most_recent_tag = get_most_recent_tag(repo)
         if most_recent_tag is None:
+            print 'Empty', repo
             continue
         if not ( any(repo+'_' in image for image in current_images) or any(repo+'_'+most_recent_tag == image for image in current_images) ):
+            print 'Resync', repo
             resync_containers.append( (repo, most_recent_tag) )
         else:
+            print 'Ignore', repo
 
     # write to file 
     # this way we don't have to worry about more than 480 jobs
