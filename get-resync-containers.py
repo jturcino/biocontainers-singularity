@@ -30,7 +30,7 @@ def get_most_recent_tag(repo):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--savefile', dest='savefile', help='name of savefile for images to be synced')
+    parser.add_argument('-f', '--savefile', dest='savefile', default='resync_containers.txt', help='name of savefile for images to be synced')
     args = parser.parse_args()
     
     biocontainers_url = 'https://quay.io/api/v1/repository?public=true&namespace=biocontainers'
