@@ -12,7 +12,7 @@ done
 
 # remove pid, err, out files for successfully created images
 echo "REMOVING PID, ERR, OUT FILES..."
-pidfiles=`/scratch/03761/jturcino/biocontainers_singularity/*.pid`
+pidfiles=`ls /scratch/03761/jturcino/biocontainers_singularity/*.pid`
 for i in $pidfiles; do
     name=`echo ${i%.pid} | cut -c 71-`
     # remove pid, err, out files only if image exists
@@ -26,10 +26,12 @@ for i in $pidfiles; do
     fi
 done
 
+# add read permissions for group and other
 # compress images
 echo "COMPRESSING IMAGES..."
 updated_images=`ls /scratch/03761/jturcino/biocontainers_singularity/*.img`
 for i in $updated_images; do
+    chmod go+r $i
     bzip2 $i
 done
 
