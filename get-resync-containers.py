@@ -42,18 +42,15 @@ if __name__ == '__main__':
     storage_dir = '/scratch/01114/jfonner/singularity/'
     current_images = [ x[22:-32] for x in os.listdir(storage_dir) if x[-3:] == 'bz2' ]
 
-    # COMBINE NEW AND REDO REPOS
-    #new_repos = [ repo for repo in available_repos if not any(repo in image for image in current_images) ]
+    # get list of containers that need to be created or updated, as well as their most recent version
     resync_containers = [] # entries formatted as (repo, version)
     for repo in available_repos:
-        # first 'any' checks for instance of repo in current images 
-        # (repo'_' assures no confusion in situations such as *bowtie_version* and *bowtie2_version*)
-        # second 'any' checks the current image has the most recent version if the first clause passes
         most_recent_tag = get_most_recent_tag(repo)
         if most_recent_tag is None:
             print 'Empty', repo
             continue
-        if not ( any(repo+'_' in image for image in current_images) or any(repo+'_'+most_recent_tag == image for image in current_images) ):
+        repo_tag = repo+'_'+most_recent_tag
+        if repo_tag not in current_images:
             print 'Resync', repo
             resync_containers.append( (repo, most_recent_tag) )
         else:
