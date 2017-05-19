@@ -16,7 +16,7 @@ pidfiles=`ls /scratch/03761/jturcino/biocontainers_singularity/*.pid`
 for i in $pidfiles; do
     name=`echo ${i%.pid} | cut -c 71-`
     # remove pid, err, out files only if image exists
-    if [ -f /scratch/03761/jturcino/biocontainers_singularity/*$name*.img ]; then
+    if [ -f /scratch/03761/jturcino/biocontainers_singularity/*${name}_*.img ]; then
         rm $i
         rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name*.err)
         rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name*.out)
