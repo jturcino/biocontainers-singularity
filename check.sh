@@ -15,14 +15,18 @@ echo "REMOVING PID, ERR, OUT FILES..."
 pidfiles=`ls /scratch/03761/jturcino/biocontainers_singularity/*.pid`
 for i in $pidfiles; do
     name=`echo ${i%.pid} | cut -c 71-`
+    # Agave changes '.' in job names to '-' automatically,
+    # so once we have a container name from the job name,
+    # we must search for an image having '.' or '-' 
+    # where the job name has a '-'.
+    grep_name=`echo $name | tr - .`
     # remove pid, err, out files only if image exists
-    if [ -f /scratch/03761/jturcino/biocontainers_singularity/*${name}_*.img ]; then
+    if ! [ -z "$(ls /scratch/03761/jturcino/biocontainers_singularity/*.img | grep "_${grep_name}_.*img")" ]; then
         rm $i
         rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name*.err)
         rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name*.out)
     else
         echo "Error creating image for ${name}. Not removing its pid, err, out files."
-        # TODO get info
     fi
 done
 
