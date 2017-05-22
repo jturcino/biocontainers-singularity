@@ -23,24 +23,27 @@ for i in $pidfiles; do
     # remove pid, err, out files only if image exists
     if ! [ -z "$(ls /scratch/03761/jturcino/biocontainers_singularity/*.img | grep "_${grep_name}_.*img")" ]; then
         rm $i
-        rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name*.err)
-        rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name*.out)
+        rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name.err)
+        rm $(ls /scratch/03761/jturcino/biocontainers_singularity/*$name.out)
     else
         echo "Error creating image for ${name}. Not removing its pid, err, out files."
     fi
 done
 
-# add read permissions for group and other
 # compress images
 echo "COMPRESSING IMAGES..."
 updated_images=`ls /scratch/03761/jturcino/biocontainers_singularity/*.img`
 for i in $updated_images; do
-    chmod go+r $i
+    new_name="$(echo ${i%-20??-??-??-*.img} | cut -c 23-).img"
+    mv $i $new_name
     bzip2 $i
 done
 
+# add read permissions for group and other
+chmod go+r *.bz2
+
 # move compressed images to storage
 echo "MOVING IMAGES TO STORAGE..."
-mv /scratch/03761/jturcino/biocontainers_singularity/*.bz2 /scratch/01114/jfonner/singularity/
+mv /scratch/03761/jturcino/biocontainers_singularity/*.bz2 /scratch/01114/jfonner/singularity/quay.io/biocontainers/
 
 echo "CHECK COMPLETE"
