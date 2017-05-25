@@ -34,7 +34,7 @@ done
 echo "COMPRESSING IMAGES..."
 updated_images=`ls /scratch/03761/jturcino/biocontainers_singularity/*.img`
 for i in $updated_images; do
-    new_name="$(echo ${i%-20??-??-??-*.img} | cut -c 73-).img"
+    new_name="/scratch/03761/jturcino/biocontainers_singularity/$(echo ${i%-20??-??-??-*.img} | cut -c 73-).img"
     mv $i $new_name
     bzip2 $new_name
 done
@@ -45,7 +45,7 @@ chmod g+rw *.bz2
 chmod o+r *.bz2
 
 # move compressed images to storage
-echo "MOVING IMAGES TO STORAGE..."
+#echo "MOVING IMAGES TO STORAGE..."
 mv /scratch/03761/jturcino/biocontainers_singularity/*.bz2 /scratch/01114/jfonner/singularity/quay.io/biocontainers/
 
 echo "CHECK COMPLETE"
