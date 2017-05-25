@@ -34,13 +34,15 @@ done
 echo "COMPRESSING IMAGES..."
 updated_images=`ls /scratch/03761/jturcino/biocontainers_singularity/*.img`
 for i in $updated_images; do
-    new_name="$(echo ${i%-20??-??-??-*.img} | cut -c 23-).img"
+    new_name="$(echo ${i%-20??-??-??-*.img} | cut -c 73-).img"
     mv $i $new_name
-    bzip2 $i
+    bzip2 $new_name
 done
 
-# add read permissions for group and other
-chmod go+r *.bz2
+# add read-write permissions for group
+# add read permissions for other
+chmod g+rw *.bz2
+chmod o+r *.bz2
 
 # move compressed images to storage
 echo "MOVING IMAGES TO STORAGE..."

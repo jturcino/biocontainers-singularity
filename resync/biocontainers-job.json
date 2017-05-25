@@ -1,16 +1,16 @@
 {
-    "appId": "jturcino-docker-to-singularity-jdNUM-0.1.0",
+    "appId": "jturcino-docker-to-singularity-jd2-0.1.0",
     "archive": true,
     "archivePath": "biocontainers_singularity/",
     "archiveSystem": "jturcino-stampede-storage",
     "batchQueue": "normal",
-    "executionSystem": "jfonner-jetstream-dockerNUM",
+    "executionSystem": "jfonner-jetstream-docker2",
     "inputs": {
         "dockerFile": ""
     },
     "maxRunTime": "00:30:00",
     "memoryPerNode": "3GB",
-    "name": "jturcino-d2s-resync-CONTAINER",
+    "name": "jturcino-d2s-resync-hmmlearn",
     "nodeCount": 1,
     "notifications": [
         {
@@ -20,8 +20,8 @@
         }
     ],
     "parameters": {
-        "dockerImage": "quay.io/biocontainers/CONTAINER",
-        "imageTag": "TAG"
+        "dockerImage": "quay.io/biocontainers/hmmlearn",
+        "imageTag": "20151031--py35_1"
     },
     "processorsPerNode": 2
 }

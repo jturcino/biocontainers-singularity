@@ -39,8 +39,8 @@ if __name__ == '__main__':
     resp = resp.json()
     available_repos = [ str(x['name']) for x in resp['repositories'] ]
 
-    storage_dir = '/scratch/01114/jfonner/singularity/'
-    current_images = [ x[22:-32] for x in os.listdir(storage_dir) if x[-3:] == 'bz2' ]
+    storage_dir = '/scratch/01114/jfonner/singularity/quay.io/biocontainers/'
+    current_images = [ x[:-8] for x in os.listdir(storage_dir) if x[-3:] == 'bz2' ]
 
     # get list of containers that need to be created or updated, as well as their most recent version
     resync_containers = [] # entries formatted as (repo, version)
