@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
         # if only name is given, find most recent tag
         elif args.name is not None:
-            ex('Code not implemented for only name given')
+            args.imgID = args.name+'_'+singularitypy.get_newest_img_tag(args.name, args.accesstoken)
 
         # if nothing given, exit with error
         else:
