@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
+import singularitypy
 from requests import get
 
 if __name__ == '__main__':
@@ -12,6 +13,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # if token not supplied, get cached Agave token
+    if args.accesstoken is None:
+        args.accesstoken = singularitypy.get_cached_token()
+        assert args.accesstoken is not None, 'Could not read cached token.'
 
     # build header and url
     header = {'Authorization': 'Bearer '+args.accesstoken}
