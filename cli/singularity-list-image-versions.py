@@ -6,9 +6,9 @@ from requests import get
 if __name__ == '__main__':
 
     # arguments
-    parser = argparse.ArgumentParser(description = 'Download a compressed singularity image to the specified directory.')
+    parser = argparse.ArgumentParser(description = 'Returns all available version tags for the given biocontainer.')
     parser.add_argument('-n', '--name', dest = 'name', help = 'name of container')
-    parser.add_argument('-z', '--accesstoken', dest = 'accesstoken', required = False, help = 'access token'
+    parser.add_argument('-z', '--accesstoken', dest = 'accesstoken', required = False, help = 'access token')
     args = parser.parse_args()
 
     # if token not supplied, get cached Agave token
@@ -25,6 +25,10 @@ if __name__ == '__main__':
 
     # print images corresponding to given container name
     name_suffix = name+'_'
-    for i in total_image_list:
-        if i[:len(name_suffix)] == name_suffix:
-            print i
+    image_list = [ x for x in total_image_list if i[:len(name_suffix)] == name_suffix ]
+
+    if len(image_list) == 0:
+        print 'There are currently no images available for the biocontainer', args.name
+    else:
+        for i in image_list:
+            print i[len(name_suffix):]

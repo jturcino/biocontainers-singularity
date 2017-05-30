@@ -10,7 +10,7 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--imageID', dest = 'imageID', help = 'Name of container and tag joined with an underscore, eg. container_tag')
     # name
     # tag
-    parser.add_argument('-z', '--accesstoken', dest = 'accesstoken', required = False, help = 'access token'
+    parser.add_argument('-z', '--accesstoken', dest = 'accesstoken', required = False, help = 'access token')
     args = parser.parse_args()
 
     # if token not supplied, get cached Agave token
