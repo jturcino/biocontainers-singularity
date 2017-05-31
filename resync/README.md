@@ -20,7 +20,7 @@ The final step in the resynchronization process ensures all new images were crea
 
 ## Resync Structure
 These steps are split into four scripts:
-* `get-resync-contianers.py`
+* `get-resync-containers.py`
 * `build-container.py`
 * `resync.sh`
 * `check.sh`
