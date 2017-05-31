@@ -1,2 +1,2 @@
 *.pyc
-/resync/biocontainers-resync-job.json
+resync/biocontainers-resync-job.json

@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument('-z', dest='token', help='token for submitting job')
     args = parser.parse_args()
 
-    jobfile = 'biocontainers-job.json'
+    jobfile = 'biocontainers-resync-job.json'
     systemnum = args.system[-1:]
 
     # write jobfile
