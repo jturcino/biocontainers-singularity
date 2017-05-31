@@ -24,7 +24,7 @@ def get_newest_img_tag(container, token):
     resp = resp.json()
     
     # get IDs and times of images corresponding to given container
-    img_time_list = [ {'name': str(x.get('name')), 'time':str(x.get('lastModified')[:-10)} for x in resp['result'] if x['name'][:len(container)] == container ] 
+    img_time_list = [ {'name': str(x.get('name')), 'time':str(x.get('lastModified')[:-10])} for x in resp['result'] if x['name'][:len(container)] == container ] 
     
     for i in img_time_list:
         datetime_obj = datetime.strptime(i.get('time'), '%Y-%m-%dT%H:%M:%S')
