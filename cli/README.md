@@ -1,5 +1,5 @@
 # biocontainers-singularity cli
-The scripts in this directory comprise a CLI with which any Agave user can interact with the Singularity images hosted on the `singularity-images.cyverse.org` system. Users can look up the versions available for a given biocontainer via `singularity-list-image-versions.py` and download a compressed image from the collection via `singularity-get-image.py`.
+The scripts in this directory comprise a CLI with which any [Agave](https://agaveapi.co/) user can interact with the Singularity image library hosted on the `singularity-images.cyverse.org` system, hosted on the Stampede supercomputer at the [Texas Advanced Computing Center](https://www.tacc.utexas.edu/). The library references the set of life-sciences-based Docker containers maintained by [Biocontainers](https://quay.io/organization/biocontainers/). Users can look up the versions available for a given biocontainer via `singularity-list-image-versions.py` and download a compressed image from the collection via `singularity-get-image.py`.
 
 ## `singularity-list-image-versions.py`
 This script takes the name of a container and returns the container versisons available in the Singularity library. Versions are listed in reverse order of creation; that is, the most recently created version is listed first. If an Agave access token is not passed in manually, the CLI will attempt to retrieve it from the Agave cache.
@@ -23,7 +23,7 @@ $ ./singularity-list-image-versions.py -n bowtie
 ```
 
 ## `singularity-get-image.py`
-This script takes in one of input options and downloads the Singularity image associated with each option. The options are explained below using the example biocontainer Bowtie, whose available tags can be seen above. For reference, the help output of the script is below.
+This script takes in one of three input options and downloads the Singularity image associated with each option. The options are explained below using the example biocontainer Bowtie, whose available tags can be seen above. For reference, the help output of the script is below.
 ```
 $ ./singularity-get-image.py -h
 usage: singularity-get-image.py [-h] [-i IMGID] [-n NAME] [-t TAG]
