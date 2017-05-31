@@ -1,5 +1,5 @@
 # biocontainers-singularity resync
-The scripts in this repository are used to maintain and update the library of biocontainer singularity images located on the `singularity-images.cyverse.org` system, hosted by the Stampede Supercomputer at the [Texas Advanced Computing Center](https://www.tacc.utexas.edu/). 
+The scripts in this directory are used to maintain and update the library of biocontainer singularity images located on the `singularity-images.cyverse.org` system, hosted on the Stampede Supercomputer at the [Texas Advanced Computing Center](https://www.tacc.utexas.edu/). 
 
 Our biocontainer Singularity images reference the library of life-sciences-based Docker conatiners kept by [Biocontainers](https://quay.io/organization/biocontainers). As new containers are published and existing containers are updated, we use a resynchronization process to keep our Singularity collection up-to-date with the Biocontainers library.
 
