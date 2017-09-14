@@ -14,7 +14,7 @@ def get_most_recent_tag(repo):
 
     tags = resp.json()['tags']
     try:
-        assert len(tags.keys()) > 0#, 'No tags for '+repo
+        assert len(tags.keys()) > 0, 'No tags for '+repo
     except:
         return
 
@@ -30,7 +30,7 @@ def get_most_recent_tag(repo):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--savefile', dest='savefile', default='resync_containers.txt', help='name of savefile for images to be synced')
+    parser.add_argument('-f', '--savefile', dest='savefile', default='resync_containers.txt', help='name of savefile for images to be synced, defaults to resync_containers.txt')
     args = parser.parse_args()
     
     biocontainers_url = 'https://quay.io/api/v1/repository?public=true&namespace=biocontainers'
@@ -39,8 +39,14 @@ if __name__ == '__main__':
     resp = resp.json()
     available_repos = [ str(x['name']) for x in resp['repositories'] ]
 
-    storage_dir = '/scratch/01114/jfonner/singularity/quay.io/biocontainers/'
-    current_images = [ x[:-8] for x in os.listdir(storage_dir) if x[-3:] == 'bz2' ]
+    storage_dir = '/work/projects/singularity/TACC/biocontainers/'
+    current_images = [ x[:-4] if x[-4:] == '.img' 
+                       else x[:-8] if x[-8:] == '.img.bz2' 
+                       else x 
+                       for x in os.listdir(storage_dir) 
+                     ]
+#    storage_dir = '/scratch/01114/jfonner/singularity/quay.io/biocontainers/'
+#    current_images = [ x[:-8] for x in os.listdir(storage_dir) if x[-3:] == 'bz2' ]
 
     # get list of containers that need to be created or updated, as well as their most recent version
     resync_containers = [] # entries formatted as (repo, version)

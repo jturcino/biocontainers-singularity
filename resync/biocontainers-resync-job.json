@@ -1,16 +1,16 @@
 {
-    "appId": "jturcino-docker-to-singularity-jdNUM-0.1.0",
+    "appId": "jturcino-docker-to-singularity-jd3-0.1.0",
     "archive": true,
     "archivePath": "biocontainers_singularity/",
-    "archiveSystem": "jturcino-stampede-storage",
+    "archiveSystem": "jturcino-stampede2-storage",
     "batchQueue": "normal",
-    "executionSystem": "jfonner-jetstream-dockerNUM",
+    "executionSystem": "jfonner-jetstream-docker3",
     "inputs": {
         "dockerFile": ""
     },
     "maxRunTime": "00:30:00",
     "memoryPerNode": "3GB",
-    "name": "jturcino-d2s-resync-CONTAINER",
+    "name": "jturcino-d2s-resync-",
     "nodeCount": 1,
     "notifications": [
         {
@@ -20,8 +20,8 @@
         }
     ],
     "parameters": {
-        "dockerImage": "quay.io/biocontainers/CONTAINER",
-        "imageTag": "TAG"
+        "dockerImage": "",
+        "imageTag": ""
     },
     "processorsPerNode": 2
 }

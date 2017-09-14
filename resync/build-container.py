@@ -7,10 +7,10 @@ import requests
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', dest='container', help='name of biocontainers image')
-    parser.add_argument('-t', dest='tag', help='tag associated with container')
-    parser.add_argument('-s', dest='system', choices=['jfonner-jetstream-docker2', 'jfonner-jetstream-docker3'], help='system on which to run creation job')
-    parser.add_argument('-z', dest='token', help='token for submitting job')
+    parser.add_argument('-c', dest='container', required=True, help='name of biocontainers image')
+    parser.add_argument('-t', dest='tag', required=True, help='tag associated with container')
+    parser.add_argument('-z', dest='token', required=True, help='token for submitting job')
+    parser.add_argument('-s', dest='system', choices=['jfonner-jetstream-docker2', 'jfonner-jetstream-docker3'], default='jfonner-jetstream-docker3', help='system on which to run creation job, defaults to 2')
     args = parser.parse_args()
 
     jobfile = 'biocontainers-resync-job.json'
@@ -37,6 +37,6 @@ if __name__ == '__main__':
               }
     data = open(jobfile)
     resp = requests.post('https://agave.iplantc.org/jobs/v2/?pretty=true', headers=headers, data=data)
-    assert resp.status_code == 201, 'job submit error for container '+args.container
+    assert resp.status_code == 201, 'job submit error for container '+args.container+'; status code '+str(resp.status_code)
 
     print 'Submitted job for', args.container, args.tag, 'on system', args.system

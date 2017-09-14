@@ -1,6 +1,6 @@
 
 scratch="/scratch/03761/jturcino/biocontainers_singularity/"
-storage="/scratch/01114/jfonner/singularity/quay.io/biocontainers/"
+storage="/work/projects/singularity/TACC/biocontainers/"
 
 # removed duplicate images
 echo "REMOVING DUPLICATE IMAGES..."
@@ -33,22 +33,21 @@ for i in $pidfiles; do
     fi
 done
 
-# compress images
-echo "COMPRESSING IMAGES..."
+# rename images
+echo "RENAMING IMAGES..."
 updated_images=`ls $scratch*.img`
 for i in $updated_images; do
     new_name="$scratch$(echo ${i%-20??-??-??-*.img} | cut -c 73-).img"
     mv $i $new_name
-    bzip2 $new_name
 done
 
 # add read-write permissions for group
 # add read permissions for other
-chmod g+rw $scratch*.bz2
-chmod o+r $scratch*.bz2
+chmod g+rw $scratch*.img
+chmod o+r $scratch*.img
 
 # move compressed images to storage
-#echo "MOVING IMAGES TO STORAGE..."
-mv $scratch*.bz2 $storage
+echo "MOVING IMAGES TO STORAGE..."
+mv $scratch*.img $storage
 
 echo "CHECK COMPLETE"
