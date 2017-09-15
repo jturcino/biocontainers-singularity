@@ -36,7 +36,7 @@ for i in $(seq 1 $num_containers); do
     fi
 
     # sleep 30s
-    sleep 30
+    sleep 120
 done
 
 # remove syncfile
