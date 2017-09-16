@@ -31,7 +31,7 @@ for i in $(seq 1 $num_containers); do
     ./build-container.py -c $container -t $tag -s $system -z $token
 
     # refresh token every 350 containers
-    if [ $(( $i % 350 )) -eq 0 ]; then 
+    if [ $(( $i % 100 )) -eq 0 ]; then 
         token=$(refresh_token)
     fi
 
