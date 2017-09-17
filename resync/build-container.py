@@ -20,7 +20,7 @@ if __name__ == '__main__':
     with open(jobfile, 'r') as f:
         job_json = json.loads(f.read().replace('\n', ''))
     # jobnames have format 'jturcino-d2s-resync-container'
-    jobname = 'jturcino-d2s-resync-'+args.container
+    jobname = ''.join(['jturcino-d2s-resync-', args.container])[:64]
 
     job_json['name'] = jobname
     job_json['appId'] = 'jturcino-docker-to-singularity-jd'+systemnum+'-0.1.0'
