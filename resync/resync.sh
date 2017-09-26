@@ -1,10 +1,11 @@
+#!/usr/bin/env bash
 
 syncfile="resync_containers.txt"
 system="jfonner-jetstream-docker3"
 
 function refresh_token() {
-	local newtoken=`echo $(auth-tokens-refresh -S) | rev | cut -d ' ' -f 1 | rev`
-	echo "$newtoken"
+    local newtoken=`echo $(auth-tokens-refresh -S) | rev | cut -d ' ' -f 1 | rev`
+    echo "$newtoken"
 }
 
 # get containers to resync; store in resync_images.txt
@@ -39,8 +40,8 @@ for i in $(seq 1 $num_containers); do
     sleep 120
 done
 
-# remove syncfile
-echo "REMOVING STORAGE FILE..."
-rm $syncfile
+## remove syncfile
+#echo "REMOVING STORAGE FILE..."
+#rm $syncfile
 
 echo "RESYNC COMPLETE"
