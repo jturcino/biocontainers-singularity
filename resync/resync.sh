@@ -5,7 +5,7 @@ function refresh_token() {
     echo "$newtoken"
 }
 
-#syncfile="resync_containers.txt"
+syncfile="resync_containers.txt"
 system="jfonner-jetstream-docker3"
 tag="latest"
 HELP="
